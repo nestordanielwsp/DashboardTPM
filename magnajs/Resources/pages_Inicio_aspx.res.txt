@@ -1,0 +1,24 @@
+﻿Titulo=Mantenimiento
+TituloGrid=
+
+Rojo=Rojo
+Amarillo=Amarillo
+Verde=Verde
+
+btnActualizar=Actualizar
+
+gvGeneral-WorkCenter=WorkCenter
+gvGeneral-Descripcion=Descripción
+gvGeneral-Equipo=Equipo
+gvGeneral-Frecuencia=Frecuencia
+gvGeneral-PiezasProducidas=Piezas Producidas 
+gvGeneral-Porcentaje=Porcentaje
+gvGeneral-UltimaEjecucion=Última Ejecución
+
+lblTooltipActualizar=Actualizar
+lblTooltipCerrar=Cerrar
+lblTooltipGuardar=Guardar
+
+msgAbrirEvidencia=Antes de aprobar o rechazar debe revisar la evidencia.
+msgConfirmarAprobado=Se aprobará, ¿Desea continuar?
+
