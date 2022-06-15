@@ -4,9 +4,9 @@
     angular.module(appName)
         .controller('inicioController', inicioController);
 
-    inicioController.$inject = ['$Ex','$scope', '$http', '$rootScope'];
+    inicioController.$inject = ['$scope', '$http', '$rootScope'];
 
-    function inicioController($Ex, $scope, $http, $rootScope) {
+    function inicioController($scope, $http, $rootScope) {
         var service = $Ex;
         service.Http = $http;
         var vm = this;
