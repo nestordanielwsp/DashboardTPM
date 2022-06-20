@@ -82,48 +82,58 @@ namespace magnajs.Pages
 
         }
 
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod]
+        static public Dictionary<string, object> GetCheckListxEqEnc(Dictionary<string, object> datos)
+        {
+            var page = new logic.BasePage();
+            var a = new logic_acces(ConexionDB);
+            var response = new Dictionary<string, object>();
+
+            DataTable Dt1 = a.ExecuteQuery("sp_SelCheckListxEqEnc_JE", datos).Tables[0];
+            //Response
+            response["Resultado"] = page.DataTableToMap(Dt1);
+
+            return response;
+
+        }
+
+
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod]
+        static public Dictionary<string, object> GetCheckListxEqDet(Dictionary<string, object> datos)
+        {
+            var page = new logic.BasePage();
+            var a = new logic_acces(ConexionDB);
+            var response = new Dictionary<string, object>();
+
+            DataTable Dt1 = a.ExecuteQuery("sp_SelCheckListxEqDet_JE", datos).Tables[0];
+            //Response
+            response["Resultado"] = page.DataTableToMap(Dt1);
+
+            return response;
+
+        }
+
+
+
 
         [WebMethod(EnableSession = true)]
         [ScriptMethod]
         public static Dictionary<string, object> Guardar(Dictionary<string, object> datos)
         {
-            var page = new Inicio();
-            var rutaArchivos = ConfigurationManager.AppSettings["CarpetaArchivos"] +
-                                   page.GetMessage("folderArchivos") + "/";
+            var page = new Inicio();          
 
             var a = new logic_acces(ConexionDB);
 
-            Utilities.DeleteFiles(rutaArchivos, 2);
+           
 
             using (TransactionScope scope = new TransactionScope())
             {
 
-                var informacionPrincipal = Utilities.StringToList(datos["InformacionPrincipal"]);
+               // var informacionPrincipal = Utilities.StringToList(datos["InformacionPrincipal"]);
 
-                foreach (var dato in informacionPrincipal)
-                {
-
-                    if (dato.ContainsKey("cve_alerta_calidad"))
-                    {
-                        dato["Usuario"] =  HttpContext.Current.Session["CveUsuario"].ToString();
-
-                        a.ExecuteNonQuery("sp_FR_AlertaCalidadArchivos_IU", dato);
-
-                        //var archivo = new Dictionary<string, object>();
-                        //archivo.Add("RutaArchivo", dato["ra_acciones_correctivas"]);
-                        //archivo.Add("UID", dato["UID_acciones_correctivas"]);
-                        //archivo.Add("EsArchivoNuevo", dato["EsArchivoNuevo_acciones_correctivas"]);
-
-                        //if (Utilities.GetBool(archivo, "EsArchivoNuevo"))
-                        //{                            
-                        //Cambia el archivo a la carpeta definitiva   
-                        // Utilities.MoveFiles(nombrearchivo, path2, archivo, "RutaArchivo");
-                        //Utilities.MoveFileToDateDirectory(rutaArchivos, archivo, "ArchivoId", "Archivos");
-                        //}
-
-
-                    }
-                }
+               
 
                 scope.Complete();
             }

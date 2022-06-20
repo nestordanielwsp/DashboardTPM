@@ -39,11 +39,11 @@ function DialogRolesController($scope, $mdDialog, RolesService) {
 angular.module('app')
     .factory('ViewsService', function () {
         var _views = [
-            { label: 'Fast Response', icon: 'fa-inbox', separator: false }//,
-           // { label: 'Orders', icon: 'fa-paper-plane', separator: false },
-           // { label: 'Contracts', icon: 'fa-file-text', separator: false },
-          //  { label: 'Reports', icon: 'fa-bar-chart', separator: false },
-          //  { label: 'Settings', icon: 'fa-cog', separator: true }
+            { label: 'Dashboard TPM', icon: 'fa-bar-chart', separator: false, page: 'Dashboard.aspx' },
+            { label: 'Mantenimiento', icon: 'fa-wrench', separator: false, page: 'Inicio.aspx' },
+            // { label: 'Contracts', icon: 'fa-file-text', separator: false },
+            //  { label: 'Reports', icon: 'fa-bar-chart', separator: false },
+            //  { label: 'Settings', icon: 'fa-cog', separator: true }
         ],
             _current = 'Dashboard';
 
@@ -87,36 +87,6 @@ angular.module('app').controller('DashboardController', function () {
     var ctrl = this;
 });
 
-angular.module('app').controller('OrdersController', function () {
-    var ctrl = this;
-
-    ctrl.orders = [
-        {
-            number: 'CIA.2015.004332', contractor: 'Ciano', date: '12/09/2015',
-            total: 1233.32, status: 'pending'
-        },
-        {
-            number: 'EUR.2015.001245', contractor: 'Eurest', date: '13/09/2015',
-            total: 2811.21, status: 'pending'
-        },
-        {
-            number: 'EUR.2015.001244', contractor: 'Eurest', date: '14/09/2015',
-            total: 754.00, status: 'closed'
-        },
-        {
-            number: 'CIA.2015.001244', contractor: 'Ciano', date: '14/09/2015',
-            total: 1639.55, status: 'created'
-        },
-        {
-            number: 'EUR.2015.001289', contractor: 'Eurest', date: '17/09/2015',
-            total: 999.99, status: 'closed'
-        },
-        {
-            number: 'CIA.2015.004343', contractor: 'Ciano', date: '18/09/2015',
-            total: 666.66, status: 'created'
-        }
-    ];
-});
 
 angular.module('app')
     .controller('appController', function ($scope, $mdSidenav, $document, $mdDialog,
@@ -161,8 +131,15 @@ angular.module('app')
         };
 
         ctrl.logIn = function () {
-            
             window.location.assign('Login.aspx');
+        }
+
+        ctrl.goDashBoard = function () {
+            window.location.assign('Dashboard.aspx');
+        }
+
+        ctrl.goMantenimiento = function () {
+            window.location.assign('Inicio.aspx');
         }
 
         ctrl.getUsuario = function () {
@@ -178,12 +155,13 @@ angular.module('app')
                 targetEvent: event,
                 clickOutsideToClose: true
             })
-            .then(function (role) {
-                ctrl.role = role;
-            });
+                .then(function (role) {
+                    ctrl.role = role;
+                });
         };
 
-        ctrl.changeView = function (view) {
+        ctrl.changeView = function (page, view) {
+            window.location.assign(page);
             ViewsService.setCurrent(view);
             ctrl.currentView = view;
             ctrl.toggleMainMenu();

@@ -376,7 +376,8 @@ ui-modal .modal-body {
 
 .jsgrid-grid-body {
     overflow-y: auto;
-    height: 45vh;
+    margin-bottom:40px;
+    /*height: 45vh;*/
 }
 
 .jsgrid-header-row th {

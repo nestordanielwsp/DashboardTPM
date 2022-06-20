@@ -517,8 +517,8 @@ tfoot {
 }
 
 #Home .jsgrid-grid-header {
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
     border: none;
     font-size: 15px;
 }

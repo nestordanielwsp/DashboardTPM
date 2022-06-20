@@ -169,10 +169,10 @@
 
                 <!-- LOG OFF MENU -->
                 <div class="log-out-menu md-whiteframe-z1" ng-class="{'visible': ctrl.logOutMenuVisible}">
-                    <md-button class="md-list-item-content" aria-label="Log In"  ng-click="ctrl.logIn()" ng-if="!ctrl.usuarioLoggeado">
+                    <md-button class="md-list-item-content" aria-label="Log In" ng-click="ctrl.logIn()" ng-if="!ctrl.usuarioLoggeado">
                         <i class="fa fa-sign-in"></i>
                         <span class="md-inline-list-icon-label">Log In</span>
-                    </md-button>                    
+                    </md-button>
                     <md-button class="md-list-item-content" aria-label="Log Out" ng-click="ctrl.logOut()" ng-if="ctrl.usuarioLoggeado">
                         <i class="fa fa-sign-out"></i>
                         <span class="md-inline-list-icon-label">Log out</span>
@@ -199,6 +199,10 @@
                 <div ui-view autoscroll="true" autoscroll-body-top>
                     <asp:ContentPlaceHolder ID="main" runat="server">
                     </asp:ContentPlaceHolder>
+                </div>
+
+                <div id="loading">
+                    <div></div>
                 </div>
             </form>
 

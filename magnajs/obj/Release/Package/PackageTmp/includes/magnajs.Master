@@ -169,10 +169,10 @@
 
                 <!-- LOG OFF MENU -->
                 <div class="log-out-menu md-whiteframe-z1" ng-class="{'visible': ctrl.logOutMenuVisible}">
-                    <md-button class="md-list-item-content" aria-label="Log In"  ng-click="ctrl.logIn()" ng-if="!ctrl.usuarioLoggeado">
+                    <md-button class="md-list-item-content" aria-label="Log In" ng-click="ctrl.logIn()" ng-if="!ctrl.usuarioLoggeado">
                         <i class="fa fa-sign-in"></i>
                         <span class="md-inline-list-icon-label">Log In</span>
-                    </md-button>                    
+                    </md-button>
                     <md-button class="md-list-item-content" aria-label="Log Out" ng-click="ctrl.logOut()" ng-if="ctrl.usuarioLoggeado">
                         <i class="fa fa-sign-out"></i>
                         <span class="md-inline-list-icon-label">Log out</span>
@@ -185,7 +185,7 @@
                         <md-toolbar></md-toolbar>
 
                         <md-content class="md-padding side-menu">
-                            <div class="menu-item" layout="row" layout-align="start center" ng-repeat="view in ctrl.views" ng-class="{'separator': view.separator, 'selected': ctrl.currentView === view.label}" ng-click="ctrl.changeView(view.label)">
+                            <div class="menu-item" layout="row" layout-align="start center" ng-repeat="view in ctrl.views" ng-class="{'separator': view.separator, 'selected': ctrl.currentView === view.label}" ng-click="ctrl.changeView(view.page, view.label)">
                                 <i class="fa {{view.icon}} icon-all-requests"></i>
                                 <span>{{view.label}}</span>
                             </div>
@@ -199,6 +199,10 @@
                 <div ui-view autoscroll="true" autoscroll-body-top>
                     <asp:ContentPlaceHolder ID="main" runat="server">
                     </asp:ContentPlaceHolder>
+                </div>
+
+                <div id="loading">
+                    <div></div>
                 </div>
             </form>
 

@@ -16,20 +16,20 @@
         vm.principal = [];
         vm.resultado = [];
         vm.linea = [];
-        vm.usuario = {};       
+        vm.usuario = {};
         vm.usuario.Loggeado = LoggeadoInfo;
-      
+
         vm.rojo = 0;
         vm.amarillo = 0;
         vm.verde = 0;
         vm.lineaAll = LineaInfo;
-        vm.depto = DeptoInfo;      
-        
+        vm.depto = DeptoInfo;
+
 
         var date = new Date();
         var dd = date.getDate();
         var mm = date.getMonth();
-        var aaaa = date.getFullYear();        
+        var aaaa = date.getFullYear();
         vm.diaHoy = new Date(aaaa, mm, dd);
 
 
@@ -40,10 +40,10 @@
 
 
         $scope.llenarLinea = function (item) {
-           // vm.linea = _.find(vm.lineaAll, { Depto: item });
+            // vm.linea = _.find(vm.lineaAll, { Depto: item });
             try {
                 Ex.load(true);
-                var datos = { Depto: item };                
+                var datos = { Depto: item };
                 service.Execute('GetLinea', datos, function (response) {
                     if (response.d) {
                         vm.linea = response.d.Linea;
@@ -58,44 +58,50 @@
         }
 
         var tipoApoyoSeleccionada = {};
-        $scope.openModalNotas = function (tipoApoyo) {
+        $scope.openModalNotas = function (item) {
 
             try {
-                tipoApoyoSeleccionada = tipoApoyo;
+                Ex.load(true);
+                $scope.chklsxEq = {};
+                $scope.chklsxEq_ = {};
+                var datos = { CodDepto: item.CodDepartamento, CodEquipo: item.CodEquipo };
 
-                $scope.evidencia = {
-                    TipoApoyoId: tipoApoyo.TipoApoyoId,
-                    NombreTipoEvidencia: tipoApoyo.NombreTipoEvidencia,
-                    NombreTipoApoyo: tipoApoyo.NombreTipoApoyo
-                };
+                service.Execute('GetCheckListxEqEnc', datos, function (response) {
+                    if (response.d) {
+                        if (response.d.Resultado.length > 0) {
+                            $scope.chklsxEq = response.d.Resultado[0];
+                            $scope.chklsxEq_ = angular.copy($scope.chklsxEq);
 
 
-                $scope.tituloModal = "Evidencias (Tipo de Apoyo)";
-                $scope.tituloDetalle = "Detalle";
-                $scope.tituloEvidencias = "Evidencias";
-                $scope.tituloDescripcion = "Descripción";
+                            vm.tipoApoyoEvidencia = [];
+                            vm.tipoApoyoEvidencia_ = [];
+                            var datos = { IdChkEquipo: $scope.chklsxEq.IdChkEquipo };
+                            service.Execute('GetCheckListxEqDet', datos, function (response) {
+                                if (response.d) {
+                                    if (response.d.Resultado.length > 0) {
+                                        vm.tipoApoyoEvidencia = response.d.Resultado;
+                                        vm.tipoApoyoEvidencia_ = angular.copy(vm.tipoApoyoEvidencia);
+                                    }
+                                }
+                            })
 
-                vm.tipoApoyoEvidencia = [];
-                vm.tipoApoyoEvidencia_ = [];
-                //Ex.load(true);
-                var datos = { TipoApoyoId: tipoApoyo.TipoApoyoId };
-                //service.Execute('ConsultarEvidencia', datos, function (response) {
-                //    if (response.d) {
-                //        vm.tipoApoyoEvidencia = response.d.TipoApoyoEvidencia;
-                //        vm.tipoApoyoEvidencia_ = angular.copy(vm.tipoApoyoEvidencia);
-                //    }
-                //    //Ex.load(false);
-                //})
+
+                        }
+                    }
+                })
+
+
+
             }
             catch (ex) {
                 Ex.mensajes(ex.message, 4);
-                // Ex.load(false);
+                Ex.load(false);
             }
 
             Ex.load(false);
             $scope.modalNotas.open();
         };
-              
+
 
         vm.guardar = function () {
             try {
@@ -122,7 +128,7 @@
                 Ex.load(true);
                 vm.principal = [];
                 vm.principal_ = angular.copy(vm.principal);
-                var datos = {Depto: pIdDepto, Linea: pIdLinea};
+                var datos = { Depto: pIdDepto, Linea: pIdLinea };
                 service.Execute('GetInformacion', datos, function (response) {
                     if (response.d) {
                         vm.principal = response.d.InformacionPrincipal;
@@ -134,7 +140,7 @@
                         vm.amarillo = vm.resultado[0].Medio;
 
                         vm.verde = vm.resultado[0].Warning;
-                       
+
 
                     }
                     Ex.load(false);
@@ -149,10 +155,10 @@
         vm.consultar = function (pIdLinea, pIdDepto) {
             consultar(pIdLinea, pIdDepto);
         }
-        
+
 
         var init = function () {
-            consultar('','MATR');
+            consultar('', 'MATR');
             vm.linea = vm.lineaAll;
         }
 

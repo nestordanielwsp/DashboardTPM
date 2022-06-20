@@ -22,3 +22,23 @@ lblTooltipGuardar=Guardar
 msgAbrirEvidencia=Antes de aprobar o rechazar debe revisar la evidencia.
 msgConfirmarAprobado=Se aprobará, ¿Desea continuar?
 
+TituloModal =¿Actividades Realizadas?
+TituloGeneral=Datos Checklist
+IdChecklist=IdChecklist
+Checklist=Checklist
+Nombre=Nombre
+Clasificacion=Clasificación
+Frecuencia=Frecuencia
+Periodo=Periodo
+Estatus=Estatus
+
+gvGeneral-Item=Item
+gvGeneral-Orden=Orden
+gvGeneral-Sistema=Sistema
+gvGeneral-Componente=Componente del Sistema
+gvGeneral-Actividad=Actividad
+gvGeneral-EquipoParado=Equipo Parado
+gvGeneral-UoM=UoM
+gvGeneral-Resultado=Resultado
+
+Observaciones=Observaciones

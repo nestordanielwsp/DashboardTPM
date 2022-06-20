@@ -30,7 +30,7 @@
 }
 
 .jsgrid-grid-body {
-    overflow-x: auto;
+    overflow-x: auto;    
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
