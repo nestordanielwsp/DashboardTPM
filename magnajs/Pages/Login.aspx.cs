@@ -82,8 +82,8 @@ namespace magnajs.Pages
                         HttpContext.Current.Session["Usuario"] = dt.Rows[0]["NombreUsuario"].ToString();
                         HttpContext.Current.Session["CveUsuario"] = this.txtUsuario.Value;
                         HttpContext.Current.Session["PerfilId"] = dt.Rows[0]["PerfilId"].ToString();
-                        HttpContext.Current.Session["ImgUser"] = dt.Rows[0]["ImgUser"].ToString();                        
-                        //HttpContext.Current.Session["EsCrearModificarActivity"] = dt.Rows[0]["EsCrearModificarActivity"].ToString();
+                        HttpContext.Current.Session["ImgUser"] = dt.Rows[0]["ImgUser"].ToString();
+                        HttpContext.Current.Session["esCrearModificarInfo"] = dt.Rows[0]["esCrearModificarInfo"].ToString();
 
                         //switch (opcionRedirect)
                         //{

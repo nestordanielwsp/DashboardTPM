@@ -18,7 +18,8 @@
         vm.linea = [];
         vm.usuario = {};
         vm.usuario.Loggeado = LoggeadoInfo;
-
+        vm.esCrearModificar = esCrearModificarInfo;
+        console.log(esCrearModificarInfo);
         vm.rojo = 0;
         vm.amarillo = 0;
         vm.verde = 0;
@@ -103,15 +104,22 @@
         };
 
 
-        vm.guardar = function () {
+        $scope.guardar = function () {
             try {
                 Ex.load(true);
                 var datos = [];
-                datos.InformacionPrincipal = vm.principal;
+                datos.IdChkEquipo = $scope.chklsxEq.IdChkEquipo;
+                datos.CodEquipo = $scope.chklsxEq.CodEquipo;
+                datos.tipoApoyoEvidencia = vm.tipoApoyoEvidencia;
                 service.Execute('Guardar', datos, function (response) {
-                    if (response.d) {
+                       debugger
+                    if (response.d.Error === '') {
                         Ex.mensajes('Se guardó con exito!', 1);
+                        $scope.modalNotas.close();
                         vm.consultar();
+                    }
+                    else {
+                        Ex.mensajes(response.d.Error, 1);
                     }
                     Ex.load(false);
                 })

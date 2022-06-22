@@ -25,22 +25,26 @@ namespace magnajs.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-                this.LoadJs("LoggeadoInfo", "false");               
 
-                if (HttpContext.Current.Session["UsuarioId"] != null)
+            this.LoadJs("LoggeadoInfo", "false");
+
+            if (HttpContext.Current.Session["UsuarioId"] != null)
+            {
+                this.LoadJs("UsuarioIdInfo", HttpContext.Current.Session["UsuarioId"].ToString());
+
+                if (HttpContext.Current.Session["UsuarioId"].ToString() != "")
                 {
-                    this.LoadJs("UsuarioIdInfo", HttpContext.Current.Session["UsuarioId"].ToString());
-
-                    if (HttpContext.Current.Session["UsuarioId"].ToString() != "")
-                    {
-                        this.LoadJs("LoggeadoInfo", "true");
-                    }
+                    this.LoadJs("LoggeadoInfo", "true");
                 }
+            }
 
             this.FillCmb("sp_SelLinea", "LineaInfo");
             this.FillCmb("sp_SelDepto", "DeptoInfo");
 
+            // FIX:  controla el afectar la BD
+            int esModificar = HttpContext.Current.Session["esCrearModificarInfo"] == null ? 0
+                              : (HttpContext.Current.Session["esCrearModificarInfo"].ToString() == "False" ? 0 : 1);
+            this.LoadJs("esCrearModificarInfo", esModificar.ToString());
 
         }
 
@@ -122,31 +126,37 @@ namespace magnajs.Pages
         [ScriptMethod]
         public static Dictionary<string, object> Guardar(Dictionary<string, object> datos)
         {
-            var page = new Inicio();          
+            var page = new Inicio();
+            var response = new Dictionary<string, object>();
+            response.Add("Error", "");
 
-            var a = new logic_acces(ConexionDB);
+            var a = new logic_acces(ConexionDB); 
+            var tipoApoyoEvidencia = Utilities.StringToList(datos["tipoApoyoEvidencia"]); 
 
-           
-
-            using (TransactionScope scope = new TransactionScope())
+            foreach (var item in tipoApoyoEvidencia)
             {
-
-               // var informacionPrincipal = Utilities.StringToList(datos["InformacionPrincipal"]);
-
-               
-
-                scope.Complete();
+                if(!item.ContainsKey("ResultVisual"))
+                {
+                    response["Error"]= "Favor de indicar el resultado para cada fila."; break;
+                }
             }
 
-            var response = new Dictionary<string, object>();
-            DataTable Dt1 = a.ExecuteQuery("sp_FR_GetList_AlertaCalidad", datos).Tables[0];
-
-            //Response
-            response["InformacionPrincipal"] = page.DataTableToMap(Dt1);
-            return response;
-            //return datos;
-        }
-
+            if (response["Error"].ToString() == "")
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    a.ExecuteNonQuery("sp_InsCheckListCapEnc_JE", datos);
+                    foreach (var tipoApoyo in tipoApoyoEvidencia)
+                    { 
+                        a.ExecuteNonQuery("sp_InsCheckListxEqDet_JE", tipoApoyo);
+                    }
+                    a.ExecuteNonQuery("sp_UpdMonitorTPM_JE", datos);
+                    scope.Complete();
+                } 
+            }
+            
+            return response; 
+        } 
 
         [WebMethod(EnableSession = true)]
         [ScriptMethod]
