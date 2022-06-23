@@ -130,6 +130,7 @@ namespace magnajs.Pages
             var response = new Dictionary<string, object>();
             response.Add("Error", "");
 
+            var IdChkEquipoOutput = "0";
             var a = new logic_acces(ConexionDB); 
             var tipoApoyoEvidencia = Utilities.StringToList(datos["tipoApoyoEvidencia"]); 
 
@@ -145,9 +146,12 @@ namespace magnajs.Pages
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
+                    datos.Add("IdChkEquipoOutput", 0);
                     a.ExecuteNonQuery("sp_InsCheckListCapEnc_JE", datos);
+                    IdChkEquipoOutput = datos["IdChkEquipoOutput"].ToString();
                     foreach (var tipoApoyo in tipoApoyoEvidencia)
-                    { 
+                    {
+                        tipoApoyo["IdChkEquipo"] = IdChkEquipoOutput;
                         a.ExecuteNonQuery("sp_InsCheckListxEqDet_JE", tipoApoyo);
                     }
                     a.ExecuteNonQuery("sp_UpdMonitorTPM_JE", datos);
