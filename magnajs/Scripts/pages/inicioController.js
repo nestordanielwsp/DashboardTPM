@@ -19,6 +19,9 @@
         vm.usuario = {};
         vm.usuario.Loggeado = LoggeadoInfo;
         vm.esCrearModificar = esCrearModificarInfo;
+        vm.hasLogin = hasLogin;
+        vm.hasLinea = tieneLinea;
+        vm.hasDepto = tieneDepto;
         console.log(esCrearModificarInfo);
         vm.rojo = 0;
         vm.amarillo = 0;
@@ -44,6 +47,7 @@
             // vm.linea = _.find(vm.lineaAll, { Depto: item });
             try {
                 Ex.load(true);
+                debugger;
                 var datos = { Depto: item };
                 service.Execute('GetLinea', datos, function (response) {
                     if (response.d) {
@@ -131,12 +135,13 @@
         }
 
 
-        var consultar = function (pIdLinea, pIdDepto) {
+        var consultar = function (pIdLinea, pIdDepto, pColor) {
             try {
                 Ex.load(true);
                 vm.principal = [];
                 vm.principal_ = angular.copy(vm.principal);
-                var datos = { Depto: pIdDepto, Linea: pIdLinea };
+                var datos = { Depto: pIdDepto, Linea: pIdLinea , Color: pColor || '' };
+                debugger;
                 service.Execute('GetInformacion', datos, function (response) {
                     if (response.d) {
                         vm.principal = response.d.InformacionPrincipal;
@@ -160,13 +165,22 @@
             }
         }
 
-        vm.consultar = function (pIdLinea, pIdDepto) {
-            consultar(pIdLinea, pIdDepto);
+        vm.consultar = function (pIdLinea, pIdDepto, pColor) {
+            consultar(pIdLinea, pIdDepto, pColor);
         }
 
 
         var init = function () {
-            consultar('', 'MATR');
+            debugger;
+            if (vm.hasLogin === 1) {
+                vm.DeptoId = vm.hasDepto;
+                vm.LineaId = vm.hasLinea;
+                consultar(vm.hasLinea, vm.hasDepto);
+            }
+            else
+            {
+                consultar('', 'MATR');
+            }
             vm.linea = vm.lineaAll;
         }
 

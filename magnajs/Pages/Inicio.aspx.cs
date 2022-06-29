@@ -46,6 +46,18 @@ namespace magnajs.Pages
                               : (HttpContext.Current.Session["esCrearModificarInfo"].ToString() == "False" ? 0 : 1);
             this.LoadJs("esCrearModificarInfo", esModificar.ToString());
 
+            if (HttpContext.Current.Session["UsuarioId"] == null)
+            {
+                this.LoadJs("hasLogin", "0");
+                this.LoadJs("tieneLinea", "'init'");
+                this.LoadJs("tieneDepto", "'MATR'");
+            }
+            else
+            {
+                this.LoadJs("hasLogin", "1");
+                this.LoadJs("tieneLinea", "'"+ HttpContext.Current.Session["tieneLinea"].ToString() + "'" );
+                this.LoadJs("tieneDepto", "'" + HttpContext.Current.Session["tieneDepto"].ToString() + "'");
+            }
         }
 
         [WebMethod(EnableSession = true)]
@@ -54,7 +66,25 @@ namespace magnajs.Pages
         {
             var page = new logic.BasePage();
             var a = new logic_acces(ConexionDB);
-            var response = new Dictionary<string, object>();          
+            var response = new Dictionary<string, object>();
+
+            if(datos.ContainsKey("Depto"))
+            {
+                HttpContext.Current.Session["tieneDepto"] = datos["Depto"].ToString();
+                if (datos["Linea"].ToString() == "init")
+                {
+                    datos["Linea"] = "";
+                }
+                else
+                {
+                    HttpContext.Current.Session["tieneLinea"] = datos["Linea"].ToString();
+                }
+            }
+            else
+            {
+                datos.Add("Depto", HttpContext.Current.Session["tieneDepto"].ToString() != "" ? HttpContext.Current.Session["tieneDepto"].ToString() : "MATR");
+                datos.Add("Linea", HttpContext.Current.Session["tieneLinea"].ToString() == "init" ? "" : HttpContext.Current.Session["tieneLinea"].ToString());
+            }
 
             DataTable Dt1 = a.ExecuteQuery("sp_SelMonitorTPM_JE", datos).Tables[0];            
             //Response

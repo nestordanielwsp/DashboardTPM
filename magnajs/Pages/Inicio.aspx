@@ -8,19 +8,19 @@
             <div class="col-12 col-lg-8 col-md-6"></div>
             <div class="col-12 col-lg-4 col-md-6">
                 <div class="summary-boxes" layout="row" layout-align="space-between center" style="margin-top: 0px; margin-bottom: 8px;">
-                    <div class="summary-box summary-pending">
+                    <div class="summary-box summary-pending" ng-click="vm.consultar(vm.LineaId, vm.DeptoId, 'ROJO')">
                         <div class="summary-box-main">
                             <div class="summary-value">{{vm.rojo}}</div>
                         </div>
                         <div class="summary-box-footer"><%= this.GetMessage("Rojo") %></div>
                     </div>
-                    <div class="summary-box summary-total">
+                    <div class="summary-box summary-total" ng-click="vm.consultar($scope.LineaId, $scope.DeptoId, 'AMARILLO')">
                         <div class="summary-box-main">
                             <div class="summary-value">{{vm.amarillo}}</div>
                         </div>
                         <div class="summary-box-footer"><%= this.GetMessage("Amarillo") %></div>
                     </div>
-                    <div class="summary-box summary-amount">
+                    <div class="summary-box summary-amount" ng-click="vm.consultar($scope.LineaId, $scope.DeptoId, 'VERDE')">
                         <div class="summary-box-main">
                             <div class="summary-value">{{vm.verde}}</div>
                         </div>
@@ -44,7 +44,7 @@
                     <div class="col-sm-1">
                     </div>
                     <div class="col-sm-2">
-                        <select class="form-control form-control-select" ng-model="vm.LineaId" ng-change="vm.consultar(vm.LineaId, vm.DeptoId)"
+                        <select class="form-control form-control-select" ng-model="vm.LineaId" ng-change="vm.consultar(vm.LineaId, vm.DeptoId, '')"
                             ng-options="item.WorkCenterId as item.WorkCenter for item in vm.linea">
                             <option value="">[ TODAS LAS LINEAS ]</option>
                         </select>
@@ -60,9 +60,9 @@
                 <table class="jsgrid-table" style="width: 880px; min-width: 880px"
                     st-table="vm.principal" st-safe-src="vm.principal_">
                     <thead>
-                        <tr>
-                            <th id="primero" ui-field width="100" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-WorkCenter") %></th>
-                            <th ui-field width="300" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-Descripcion") %></th>
+                        <tr> 
+                            <th id="primero" ui-field width="150" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-WorkCenter") %></th>
+                            <th ui-field width="250" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-Descripcion") %></th>
                             <th ui-field width="80" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-Equipo") %></th>
                             <th ui-field width="80" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-Frecuencia") %></th>
                             <th ui-field width="80" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-PiezasProducidas") %></th>
@@ -72,9 +72,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="item in vm.principal">
-                            <td st-ratio="100" class="text-center">{{item.WorkCenter}}</td>
-                            <td st-ratio="300" class="text-center">{{item.DescripTechnical}}</td>
+                        <tr ng-repeat="item in vm.principal"> 
+                            <td st-ratio="150" style="font-weight: bold;" class="text-center summary-box {{item.summary_color}}">{{item.WorkCenter}}</td>
+                            <td st-ratio="250" class="text-center">{{item.DescripTechnical}}</td>
                             <td st-ratio="80" class="text-center">{{item.CodEquipo}}</td>
                             <td st-ratio="80" class="text-center">{{item.Frecuencia}}</td>
                             <td st-ratio="80" class="text-center">{{item.PzsProduc}}</td>
