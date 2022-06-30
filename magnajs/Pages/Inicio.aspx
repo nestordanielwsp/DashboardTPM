@@ -61,24 +61,30 @@
                     st-table="vm.principal" st-safe-src="vm.principal_">
                     <thead>
                         <tr> 
-                            <th id="primero" ui-field width="150" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-WorkCenter") %></th>
+                            <th ui-field width="5" ></th>
+                            <th id="primero" ui-field width="130" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-WorkCenter") %></th>
+                            
                             <th ui-field width="250" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-Descripcion") %></th>
                             <th ui-field width="80" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-Equipo") %></th>
                             <th ui-field width="80" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-Frecuencia") %></th>
                             <th ui-field width="80" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-PiezasProducidas") %></th>
                             <th ui-field width="80" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-Porcentaje") %></th>
+                            
+                            <th ui-field width="5" ></th>
                             <th ui-field width="80" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-UltimaEjecucion") %></th>
                             <th id="ultimo" ui-field width="60"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in vm.principal"> 
-                            <td st-ratio="150" style="font-weight: bold;" class="text-center summary-box {{item.summary_color}}">{{item.WorkCenter}}</td>
+                            <td class="{{item.summary_color}}" ></td>
+                            <td st-ratio="130" style="font-weight: bold;" class="text-center">{{item.WorkCenter}}</td>
                             <td st-ratio="250" class="text-center">{{item.DescripTechnical}}</td>
                             <td st-ratio="80" class="text-center">{{item.CodEquipo}}</td>
                             <td st-ratio="80" class="text-center">{{item.Frecuencia}}</td>
                             <td st-ratio="80" class="text-center">{{item.PzsProduc}}</td>
                             <td st-ratio="80" class="text-center">{{item.Porcentaje}}</td>
+                            <td class="{{item.summary_color}}" ></td>
                             <td st-ratio="80" class="text-center">{{item.UltimaEjec}}</td>
                             <td st-ratio="60" class="text-center">
                                 <button type="button" class="btn btn-link" ng-click="openModalNotas(item)">

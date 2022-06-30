@@ -8,6 +8,15 @@
     counter-reset: section
 }
 
+.summary_color_RED {
+    background-color: #FF0000
+}
+.summary_color_YELLOW {
+    background-color: #FFED00
+}
+.summary_color_GREEN {
+    background-color: #00B050
+}
 
 .textovertical {
     writing-mode: vertical-lr;

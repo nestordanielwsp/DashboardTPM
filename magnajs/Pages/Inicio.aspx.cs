@@ -71,7 +71,7 @@ namespace magnajs.Pages
             if(datos.ContainsKey("Depto"))
             {
                 HttpContext.Current.Session["tieneDepto"] = datos["Depto"].ToString();
-                if (datos["Linea"].ToString() == "init")
+                if (datos["Linea"] == null || datos["Linea"].ToString() == "init")
                 {
                     datos["Linea"] = "";
                 }
