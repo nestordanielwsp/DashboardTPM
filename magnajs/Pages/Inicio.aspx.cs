@@ -230,7 +230,9 @@ namespace magnajs.Pages
                         tipoApoyo["IdChkEquipo"] = IdChkEquipoOutput;
                         a.ExecuteNonQuery("sp_InsCheckListxEqDet_JE", tipoApoyo);
                     }
-                    //a.ExecuteNonQuery("sp_UpdMonitorTPM_JE", datos);
+                    
+                    a.ExecuteNonQuery("sp_UpdMonitorTPM_JE", datos);
+
                     scope.Complete();
                 } 
             }
