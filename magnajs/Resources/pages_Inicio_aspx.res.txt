@@ -15,6 +15,8 @@ gvGeneral-PiezasProducidas=Piezas Producidas
 gvGeneral-Porcentaje=Porcentaje
 gvGeneral-UltimaEjecucion=Última Ejecución
 
+gvGeneral-EstatusFlujo=Estatus
+gvGeneral-FechaFlujo=Fecha
 lblTooltipActualizar=Actualizar
 lblTooltipCerrar=Cerrar
 lblTooltipGuardar=Guardar

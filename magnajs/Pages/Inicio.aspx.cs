@@ -46,6 +46,11 @@ namespace magnajs.Pages
                               : (HttpContext.Current.Session["esCrearModificarInfo"].ToString() == "False" ? 0 : 1);
             this.LoadJs("esCrearModificarInfo", esModificar.ToString());
 
+            // FIX:  controla el afectar la BD
+            int esAprobador = HttpContext.Current.Session["esAprobador"] == null ? 0
+                              : (HttpContext.Current.Session["esAprobador"].ToString() == "False" ? 0 : 1);
+            this.LoadJs("esAprobadorInfo", esAprobador.ToString());
+
             if (HttpContext.Current.Session["UsuarioId"] == null)
             {
                 this.LoadJs("hasLogin", "0");
@@ -148,9 +153,50 @@ namespace magnajs.Pages
             return response;
 
         }
+         
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod]
+        public static Dictionary<string, object> Rechazar(Dictionary<string, object> datos)
+        {
+            var page = new Inicio();
+            var response = new Dictionary<string, object>();
+            response.Add("Error", "");
+             
+            var a = new logic_acces(ConexionDB); 
+             
+            if (response["Error"].ToString() == "")
+            {
+                using (TransactionScope scope = new TransactionScope())
+                { 
+                    a.ExecuteNonQuery("sp_RechazarMonitorTPM_JE", datos);
+                    scope.Complete();
+                }
+            }
 
+            return response;
+        }
 
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod]
+        public static Dictionary<string, object> Aprobar(Dictionary<string, object> datos)
+        {
+            var page = new Inicio();
+            var response = new Dictionary<string, object>();
+            response.Add("Error", "");
 
+            var a = new logic_acces(ConexionDB);
+
+            if (response["Error"].ToString() == "")
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    a.ExecuteNonQuery("sp_AprobarMonitorTPM_JE", datos);
+                    scope.Complete();
+                }
+            }
+
+            return response;
+        }
 
         [WebMethod(EnableSession = true)]
         [ScriptMethod]
@@ -184,7 +230,7 @@ namespace magnajs.Pages
                         tipoApoyo["IdChkEquipo"] = IdChkEquipoOutput;
                         a.ExecuteNonQuery("sp_InsCheckListxEqDet_JE", tipoApoyo);
                     }
-                    a.ExecuteNonQuery("sp_UpdMonitorTPM_JE", datos);
+                    //a.ExecuteNonQuery("sp_UpdMonitorTPM_JE", datos);
                     scope.Complete();
                 } 
             }

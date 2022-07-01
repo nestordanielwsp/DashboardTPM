@@ -97,3 +97,7 @@ lblNo=No
 lblActivo=Activo
 lblTooltipHistoricSelected=Ir al Histórico seleccinado
 lblDownloadLastMovement=Descargar último movimiento
+
+
+lblTooltipAprobar=Aprobar	
+lblTooltipRechazar=Rechazar

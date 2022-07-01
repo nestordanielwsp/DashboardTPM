@@ -16,8 +16,8 @@
 }
 .summary_color_GREEN {
     background-color: #00B050
-}
-
+}    
+  
 .textovertical {
     writing-mode: vertical-lr;
     transform: rotate(180deg);

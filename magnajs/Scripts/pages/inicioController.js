@@ -19,6 +19,7 @@
         vm.usuario = {};
         vm.usuario.Loggeado = LoggeadoInfo;
         vm.esCrearModificar = esCrearModificarInfo;
+        vm.esAprobador = esAprobadorInfo;
         vm.hasLogin = hasLogin;
         vm.hasLinea = tieneLinea;
         vm.hasDepto = tieneDepto;
@@ -134,6 +135,57 @@
             }
         }
 
+        $scope.aprobar = function () {
+            try {
+                Ex.load(true);
+                var datos = [];
+                datos.IdChkEquipo = $scope.chklsxEq.IdChkEquipo;
+                datos.CodEquipo = $scope.chklsxEq.CodEquipo;
+                datos.tipoApoyoEvidencia = vm.tipoApoyoEvidencia;
+                service.Execute('Aprobar', datos, function (response) {
+                    debugger
+                    if (response.d.Error === '') {
+                        Ex.mensajes('Se aprobó con exito!', 1);
+                        $scope.modalNotas.close();
+                        vm.consultar();
+                    }
+                    else {
+                        Ex.mensajes(response.d.Error, 1);
+                    }
+                    Ex.load(false);
+                })
+            }
+            catch (ex) {
+                Ex.mensajes(ex.message, 4);
+                Ex.load(false);
+            }
+        }
+
+        $scope.rechazar = function () {
+            try {
+                Ex.load(true);
+                var datos = [];
+                datos.IdChkEquipo = $scope.chklsxEq.IdChkEquipo;
+                datos.CodEquipo = $scope.chklsxEq.CodEquipo;
+                datos.tipoApoyoEvidencia = vm.tipoApoyoEvidencia;
+                service.Execute('Rechazar', datos, function (response) {
+                    debugger
+                    if (response.d.Error === '') {
+                        Ex.mensajes('Se rechazó con exito!', 1);
+                        $scope.modalNotas.close();
+                        vm.consultar();
+                    }
+                    else {
+                        Ex.mensajes(response.d.Error, 1);
+                    }
+                    Ex.load(false);
+                })
+            }
+            catch (ex) {
+                Ex.mensajes(ex.message, 4);
+                Ex.load(false);
+            }
+        }
 
         var consultar = function (pIdLinea, pIdDepto, pColor) {
             try {

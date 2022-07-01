@@ -62,9 +62,9 @@
                     <thead>
                         <tr> 
                             <th ui-field width="5" ></th>
-                            <th id="primero" ui-field width="130" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-WorkCenter") %></th>
+                            <th id="primero" ui-field width="90" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-WorkCenter") %></th>
                             
-                            <th ui-field width="250" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-Descripcion") %></th>
+                            <th ui-field width="200" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-Descripcion") %></th>
                             <th ui-field width="80" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-Equipo") %></th>
                             <th ui-field width="80" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-Frecuencia") %></th>
                             <th ui-field width="80" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-PiezasProducidas") %></th>
@@ -72,21 +72,25 @@
                             
                             <th ui-field width="5" ></th>
                             <th ui-field width="80" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-UltimaEjecucion") %></th>
-                            <th id="ultimo" ui-field width="60"></th>
+                            <th ui-field width="50" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-EstatusFlujo") %></th>
+                            <th ui-field width="50" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-FechaFlujo") %></th>
+                            <th id="ultimo" ui-field width="40"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in vm.principal"> 
                             <td class="{{item.summary_color}}" ></td>
-                            <td st-ratio="130" style="font-weight: bold;" class="text-center">{{item.WorkCenter}}</td>
-                            <td st-ratio="250" class="text-center">{{item.DescripTechnical}}</td>
+                            <td st-ratio="90" style="font-weight: bold;" class="text-center">{{item.WorkCenter}}</td>
+                            <td st-ratio="200" class="text-center">{{item.DescripTechnical}}</td>
                             <td st-ratio="80" class="text-center">{{item.CodEquipo}}</td>
                             <td st-ratio="80" class="text-center">{{item.Frecuencia}}</td>
                             <td st-ratio="80" class="text-center">{{item.PzsProduc}}</td>
                             <td st-ratio="80" class="text-center">{{item.Porcentaje}}</td>
                             <td class="{{item.summary_color}}" ></td>
                             <td st-ratio="80" class="text-center">{{item.UltimaEjec}}</td>
-                            <td st-ratio="60" class="text-center">
+                            <td st-ratio="50" class="text-center">{{item.Estatus}}</td>
+                            <td st-ratio="50" class="text-center">{{item.FechaFlujo}}</td>
+                            <td st-ratio="40" class="text-center">
                                 <button type="button" class="btn btn-link" ng-click="openModalNotas(item)">
                                     <i class="fa fa-eye"></i>
                                 </button>
@@ -105,8 +109,8 @@
         <ui-modal modal="modalNotas">
             <div class="modal-dialog modal-lg" form="modalForm" style="width: 1200px;">
                 <div class="modal-content" ng-form="FormaActualizacion">
-                    <div class="modal-header" style="background-color: darkgray">
-                        <h4 style="color: #0069af; font-weight: 600; opacity: .9;" class="al-title"><%= this.GetMessage("TituloModal") %></h4>
+                    <div class="modal-header" style="background-color: #2dacd1">
+                        <h4 style="color: black; font-weight: 600; opacity: .9;" class="al-title"><%= this.GetMessage("TituloModal") %></h4>
                     </div>
                     <div class="modal-body" ng-class="{'submitted': submitted}" style="overflow: hidden">
                         <div class="view dashboard" style="margin-top: 0px; margin-bottom: 2px;">
@@ -197,13 +201,13 @@
                                                     <td st-ratio="500" class="text-center">{{item.DescripcionAct}}</td>
                                                     <td st-ratio="80" class="text-center">{{item.EqParado}}</td>
                                                     <td st-ratio="50" class="text-center">{{item.CodUom}}</td>
-                                                    <td st-ratio="50" class="text-center" ng-if="item.TipoOperacion == 'V'" ng-hide="vm.esCrearModificar == 0">
+                                                    <td st-ratio="50" class="text-center" ng-if="item.TipoOperacion == 'V'"  ng-hide="vm.esCrearModificar == 0 && vm.esAprobador == 0">
                                                         <label class="radio-inline">
-                                                            <input type="radio" ng-model="item.ResultVisual" value="1" required>
+                                                            <input type="radio" ng-model="item.ResultVisual" value="1" required ng-disabled="vm.esAprobador == 1">
                                                             <span class="label-color">Ok</span>
                                                         </label> 
                                                         <label class="radio-inline">
-                                                            <input type="radio" ng-model="item.ResultVisual" value="0" required>
+                                                            <input type="radio" ng-model="item.ResultVisual" value="0" required ng-disabled="vm.esAprobador == 1">
                                                             <span class="label-color">No OK</span>
                                                         </label>
                                                     </td> 
@@ -226,10 +230,16 @@
                     </div>
 
                     <div class="modal-footer">
+                         <button type="button" class="btn btn-info" ng-click="aprobar(FormaActualizacion)"  ng-show="vm.esAprobador == 1">
+                            <%= this.GetCommonMessage("lblTooltipAprobar") %>
+                        </button>
+                          <button type="button" class="btn btn-red" ng-click="rechazar(FormaActualizacion)"  ng-show="vm.esAprobador == 1">
+                            <%= this.GetCommonMessage("lblTooltipRechazar") %>
+                        </button>
                         <button type="button" class="btn btn-success" ng-click="guardar(FormaActualizacion)"  ng-hide="vm.esCrearModificar == 0">
                             <%= this.GetCommonMessage("lblTooltipGuardar") %>
                         </button>
-                        <button type="button" class="btn btn-red" data-dismiss="modal">
+                        <button type="button" class="btn btn-remove" data-dismiss="modal">
                             <%= this.GetMessage("lblTooltipCerrar") %>
                         </button>
                     </div>
