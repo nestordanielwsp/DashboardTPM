@@ -79,9 +79,8 @@ namespace magnajs.includes
 
             //}
             //else
-            var usuario = "var ImgPerfil = '';var Usuario='" + Convert.ToString(HttpContext.Current.Session["Usuario"]) + "'";
-            this.RunJavascriptBeforeLoadPage(usuario);
-
+            var usuario = "var ImgPerfil = '';var Usuario='" + Convert.ToString(HttpContext.Current.Session["UsuarioCompuesto"]) + "'";
+            this.RunJavascriptBeforeLoadPage(usuario); 
         }
 
         public void RunJavascriptBeforeLoadPage(string script)

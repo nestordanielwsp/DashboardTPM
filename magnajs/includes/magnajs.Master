@@ -155,7 +155,7 @@
 
                         <span flex></span>
 
-                        <div class="identification" layout="column">
+                        <div class="identification" layout="column"> 
                             <div class="name">{{ctrl.getUsuario()}}</div>
                             <!-- <md-button class="role" ng-click="ctrl.changeRole($event)">             
             </md-button> -->

@@ -56,7 +56,6 @@ namespace magnajs.Pages
         {
             try
             {
-                HttpContext.Current.Session.RemoveAll();
                 this.lblError.Text = "";
                 opcionRedirect = Request.QueryString["op"] != null ? Request.QueryString["op"] : string.Empty;
                 oid = Request.QueryString["oid"] != null ? Request.QueryString["oid"] : string.Empty;
@@ -82,8 +81,12 @@ namespace magnajs.Pages
                         HttpContext.Current.Session["Usuario"] = dt.Rows[0]["NombreUsuario"].ToString();
                         HttpContext.Current.Session["CveUsuario"] = this.txtUsuario.Value;
                         HttpContext.Current.Session["PerfilId"] = dt.Rows[0]["PerfilId"].ToString();
-                        HttpContext.Current.Session["ImgUser"] = dt.Rows[0]["ImgUser"].ToString();                        
-                        //HttpContext.Current.Session["EsCrearModificarActivity"] = dt.Rows[0]["EsCrearModificarActivity"].ToString();
+                        HttpContext.Current.Session["ImgUser"] = dt.Rows[0]["ImgUser"].ToString();
+                        HttpContext.Current.Session["esCrearModificarInfo"] = dt.Rows[0]["esCrearModificarInfo"].ToString();
+                        HttpContext.Current.Session["esAprobador"] = dt.Rows[0]["esAprobador"].ToString();
+                         
+                        HttpContext.Current.Session["UsuarioCompuesto"] = dt.Rows[0]["UsuarioCompuesto"].ToString();
+
 
                         //switch (opcionRedirect)
                         //{
@@ -102,10 +105,18 @@ namespace magnajs.Pages
                         //}
                         Response.Redirect("Inicio.aspx");
                     }
+                    else
+                    { 
+                        HttpContext.Current.Session.RemoveAll();
+                    }
+                }
+                else
+                { 
+                    HttpContext.Current.Session.RemoveAll();
                 }
             }
             catch (Exception ex)
-            {
+            { 
                 this.lblError.Text = ex.Message;
             }
         }

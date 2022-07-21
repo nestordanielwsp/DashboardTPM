@@ -83,7 +83,8 @@ lblOct=Oct
 lblNov=Nov
 lblDic=Dic
 lblTooltipRegresar=Regresar
-lblTooltipGuardar=Guardar
+lblTooltipGuardar=Guardar Todo
+lblTooltipGuardarPrevio=Guardar Previo
 lblTooltipAgregar=Agregar
 lblTooltipEnviar=Enviar
 btnAvanzado=Avanzado
@@ -97,3 +98,7 @@ lblNo=No
 lblActivo=Activo
 lblTooltipHistoricSelected=Ir al Histórico seleccinado
 lblDownloadLastMovement=Descargar último movimiento
+
+
+lblTooltipAprobar=Aprobar	
+lblTooltipRechazar=Rechazar

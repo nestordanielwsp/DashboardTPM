@@ -144,9 +144,7 @@ angular.module('app')
 
         ctrl.getUsuario = function () {
             return Usuario;
-        }
-
-
+        } 
         ctrl.changeRole = function (event) {
             $mdDialog.show({
                 controller: DialogRolesController,
