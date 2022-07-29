@@ -112,7 +112,10 @@
                                 <div class="col-sm-2">
                                     <input type="text" ng-model="chklsxEq.IdChkEquipo" class="control-label" disabled />
                                 </div> 
-                                <div class="col-sm-1"></div>
+                                <div class="col-sm-1">
+                                     <input type="text" ng-model="chklsxEq.IdChkEquipo" class="control-label" ng-hide="true" /> 
+                                     <input type="text" ng-model="chklsxEq.CodEquipo" class="control-label" ng-hide="true" /> 
+                                </div>
                                 <div class="col-sm-1">
                                     <span style="color: #0069af"><%= this.GetMessage("Checklist") %></span>
                                 </div>
@@ -175,7 +178,7 @@
                                                     <th ui-field width="500" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-Actividad") %></th>
                                                     <th ui-field width="80" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-EquipoParado") %></th>
                                                     <th ui-field width="50" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-UoM") %></th>
-                                                    <th id="ultimo" ui-field width="150" class="titulo3 text-center" style="font-weight: bold;"><%= this.GetMessage("gvGeneral-Resultado") %></th>
+                                                    <th id="ultimo" ui-field width="150" class="titulo3 text-center" style="font-weight: bold;"  ng-hide="vm.esCrearModificar == 0"><%= this.GetMessage("gvGeneral-Resultado") %></th>
 
                                                 </tr>
                                             </thead>
@@ -188,16 +191,16 @@
                                                     <td st-ratio="500" class="text-center">{{item.DescripcionAct}}</td>
                                                     <td st-ratio="80" class="text-center">{{item.EqParado}}</td>
                                                     <td st-ratio="50" class="text-center">{{item.CodUom}}</td>
-                                                    <td st-ratio="50" class="text-center" ng-if="item.TipoOperacion == 'V'">
+                                                    <td st-ratio="50" class="text-center" ng-if="item.TipoOperacion == 'V'" ng-hide="vm.esCrearModificar == 0">
                                                         <label class="radio-inline">
                                                             <input type="radio" ng-model="item.ResultVisual" value="1" required>
                                                             <span class="label-color">Ok</span>
-                                                        </label>
+                                                        </label> 
                                                         <label class="radio-inline">
                                                             <input type="radio" ng-model="item.ResultVisual" value="0" required>
                                                             <span class="label-color">No OK</span>
                                                         </label>
-                                                    </td>
+                                                    </td> 
                                                     <td st-ratio="50" class="text-center" ng-if="item.TipoOperacion != 'V'">
                                                          <input type="text" ng-model="item.ResultMedible" class="control-label" required />
                                                     </td>
@@ -217,7 +220,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" ng-click="guardar(FormaActualizacion)">
+                        <button type="button" class="btn btn-success" ng-click="guardar(FormaActualizacion)"  ng-hide="vm.esCrearModificar == 0">
                             <%= this.GetCommonMessage("lblTooltipGuardar") %>
                         </button>
                         <button type="button" class="btn btn-red" data-dismiss="modal">

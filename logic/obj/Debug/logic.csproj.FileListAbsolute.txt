@@ -40,3 +40,17 @@ D:\Sistemas\Magna\GitHub\FastResponse\logic\obj\Debug\logic.csproj.CoreCompileIn
 D:\Sistemas\Magna\GitHub\FastResponse\logic\obj\Debug\logic.csproj.CopyComplete
 D:\Sistemas\Magna\GitHub\FastResponse\logic\obj\Debug\logic.dll
 D:\Sistemas\Magna\GitHub\FastResponse\logic\obj\Debug\logic.pdb
+D:\Sistemas\Daniel\Github\DashboardTPM\logic\bin\Debug\logic.dll.config
+D:\Sistemas\Daniel\Github\DashboardTPM\logic\bin\Debug\logic.dll
+D:\Sistemas\Daniel\Github\DashboardTPM\logic\bin\Debug\logic.pdb
+D:\Sistemas\Daniel\Github\DashboardTPM\logic\bin\Debug\EPPlus.dll
+D:\Sistemas\Daniel\Github\DashboardTPM\logic\bin\Debug\Newtonsoft.Json.dll
+D:\Sistemas\Daniel\Github\DashboardTPM\logic\bin\Debug\NPOI.dll
+D:\Sistemas\Daniel\Github\DashboardTPM\logic\bin\Debug\RestSharp.dll
+D:\Sistemas\Daniel\Github\DashboardTPM\logic\bin\Debug\Newtonsoft.Json.xml
+D:\Sistemas\Daniel\Github\DashboardTPM\logic\bin\Debug\RestSharp.xml
+D:\Sistemas\Daniel\Github\DashboardTPM\logic\obj\Debug\logic.csproj.AssemblyReference.cache
+D:\Sistemas\Daniel\Github\DashboardTPM\logic\obj\Debug\logic.csproj.CoreCompileInputs.cache
+D:\Sistemas\Daniel\Github\DashboardTPM\logic\obj\Debug\logic.csproj.CopyComplete
+D:\Sistemas\Daniel\Github\DashboardTPM\logic\obj\Debug\logic.dll
+D:\Sistemas\Daniel\Github\DashboardTPM\logic\obj\Debug\logic.pdb

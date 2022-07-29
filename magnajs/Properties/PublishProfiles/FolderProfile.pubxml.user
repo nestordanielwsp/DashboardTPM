@@ -4,7 +4,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>D:\Sistemas\Magna\Publish\FastResponse</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Sistemas\Magna\Publish\DashboardTPM</_PublishTargetUrl>
     <History>True|2022-06-06T07:02:34.9277943Z;True|2022-06-06T00:34:27.3492175-05:00;True|2022-06-06T00:28:54.9295158-05:00;</History>
   </PropertyGroup>
   <ItemGroup>
@@ -36,7 +36,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/31/2022 16:19:11</publishTime>
     </File>
     <File Include="App_Themes/Portal/activities.css">
-      <publishTime>06/05/2022 00:13:09</publishTime>
+      <publishTime>06/13/2022 23:44:14</publishTime>
     </File>
     <File Include="App_Themes/Portal/alerts.css">
       <publishTime>05/31/2022 16:19:11</publishTime>
@@ -81,7 +81,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/31/2022 16:19:11</publishTime>
     </File>
     <File Include="App_Themes/Portal/jsgrid.css">
-      <publishTime>06/05/2022 03:32:23</publishTime>
+      <publishTime>06/16/2022 03:55:05</publishTime>
     </File>
     <File Include="App_Themes/Portal/multiselect.css">
       <publishTime>05/31/2022 16:19:11</publishTime>
@@ -276,10 +276,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/05/2022 23:53:23</publishTime>
     </File>
     <File Include="bin/magnajs.dll">
-      <publishTime>06/06/2022 02:02:29</publishTime>
+      <publishTime>06/23/2022 18:08:04</publishTime>
     </File>
     <File Include="bin/magnajs.pdb">
-      <publishTime>06/06/2022 02:02:29</publishTime>
+      <publishTime>06/23/2022 18:08:04</publishTime>
     </File>
     <File Include="bin/Microsoft.Azure.KeyVault.Core.dll">
       <publishTime>05/31/2022 16:19:11</publishTime>
@@ -333,10 +333,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/31/2022 16:19:11</publishTime>
     </File>
     <File Include="css/main.css">
-      <publishTime>06/06/2022 01:57:24</publishTime>
+      <publishTime>06/16/2022 03:55:09</publishTime>
     </File>
     <File Include="css/PanelCustom.css">
-      <publishTime>06/01/2022 00:05:50</publishTime>
+      <publishTime>06/16/2022 03:22:46</publishTime>
     </File>
     <File Include="default.aspx">
       <publishTime>08/05/2021 17:46:30</publishTime>
@@ -453,7 +453,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/05/2021 17:46:30</publishTime>
     </File>
     <File Include="includes/magnajs.Master">
-      <publishTime>06/05/2022 22:56:04</publishTime>
+      <publishTime>06/15/2022 21:19:17</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>05/31/2022 16:19:11</publishTime>
@@ -491,6 +491,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Pages/CuentaContable.aspx">
       <publishTime>08/05/2021 17:46:28</publishTime>
     </File>
+    <File Include="Pages/Dashboard.aspx">
+      <publishTime>06/13/2022 23:45:53</publishTime>
+    </File>
     <File Include="Pages/DescExtracontractual.aspx">
       <publishTime>08/05/2021 17:46:28</publishTime>
     </File>
@@ -522,13 +525,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/01/2022 00:13:46</publishTime>
     </File>
     <File Include="Pages/Inicio.aspx">
-      <publishTime>06/06/2022 02:02:09</publishTime>
+      <publishTime>06/22/2022 18:33:58</publishTime>
     </File>
     <File Include="Pages/Kam.aspx">
       <publishTime>08/05/2021 17:46:28</publishTime>
     </File>
     <File Include="Pages/Login.aspx">
-      <publishTime>06/05/2022 20:44:52</publishTime>
+      <publishTime>06/13/2022 23:46:46</publishTime>
     </File>
     <File Include="Pages/Marca.aspx">
       <publishTime>08/05/2021 17:46:28</publishTime>
@@ -692,6 +695,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Resources/pages_CuentaContable_aspx.res.txt">
       <publishTime>08/05/2021 17:46:29</publishTime>
     </File>
+    <File Include="Resources/pages_Dashboard_aspx.res.txt">
+      <publishTime>06/11/2022 02:57:23</publishTime>
+    </File>
     <File Include="Resources/pages_DescExtracontractual_aspx.res.txt">
       <publishTime>08/05/2021 17:46:29</publishTime>
     </File>
@@ -717,7 +723,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/05/2021 17:46:29</publishTime>
     </File>
     <File Include="Resources/pages_Inicio_aspx.res.txt">
-      <publishTime>06/05/2022 03:40:37</publishTime>
+      <publishTime>06/16/2022 01:09:23</publishTime>
     </File>
     <File Include="Resources/pages_Kam_aspx.res.txt">
       <publishTime>08/05/2021 17:46:29</publishTime>
@@ -834,7 +840,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/31/2022 16:19:11</publishTime>
     </File>
     <File Include="Scripts/configuracion/customDirectives.js">
-      <publishTime>06/01/2022 00:13:45</publishTime>
+      <publishTime>06/16/2022 03:53:56</publishTime>
     </File>
     <File Include="Scripts/configuracion/enums.js">
       <publishTime>05/31/2022 16:19:11</publishTime>
@@ -5247,7 +5253,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/19/2022 02:02:09</publishTime>
     </File>
     <File Include="Scripts/pages/appController.js">
-      <publishTime>06/05/2022 22:56:04</publishTime>
+      <publishTime>06/11/2022 01:46:59</publishTime>
     </File>
     <File Include="Scripts/pages/aprobador.js">
       <publishTime>08/05/2021 17:46:30</publishTime>
@@ -5279,6 +5285,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Scripts/pages/cuentaContableController.js">
       <publishTime>08/05/2021 17:46:30</publishTime>
     </File>
+    <File Include="Scripts/pages/dashboardController.js">
+      <publishTime>06/13/2022 23:27:02</publishTime>
+    </File>
     <File Include="Scripts/pages/DescExtracontractual.js">
       <publishTime>08/05/2021 17:46:30</publishTime>
     </File>
@@ -5307,7 +5316,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/05/2021 17:46:30</publishTime>
     </File>
     <File Include="Scripts/pages/inicioController.js">
-      <publishTime>06/06/2022 01:16:58</publishTime>
+      <publishTime>06/22/2022 18:33:58</publishTime>
     </File>
     <File Include="Scripts/pages/kamController.js">
       <publishTime>08/05/2021 17:46:30</publishTime>
@@ -5526,7 +5535,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/05/2021 17:46:30</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/06/2022 00:28:49</publishTime>
+      <publishTime>06/23/2022 18:08:06</publishTime>
     </File>
   </ItemGroup>
 </Project>
